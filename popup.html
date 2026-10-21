@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Dark Mode Pro By Dr.Xeno</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="logo-wrapper">
+          <img src="icons/icon32.png" alt="Logo" class="logo">
+        </div>
+        <div class="brand-text">
+          <h1>PDF Dark Mode By Dr.Xeno</h1>
+          <span class="subtitle">Science is elegent </span>
+        </div>
+      </div>
+      <div id="status-badge" class="badge badge-active">
+        <span class="dot"></span>
+        <span id="status-text">Active</span>
+      </div>
+    </header>
+
+    <!-- Master Switch Card -->
+    <div class="card master-card">
+      <div class="master-info">
+        <div class="master-icon" id="master-icon">
+          <!-- Sun/Moon SVG injected via JS -->
+        </div>
+        <div>
+          <span class="master-title">Dark Mode</span>
+          <span class="master-desc" id="master-desc">hello</span>
+        </div>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="toggle-enabled">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <!-- Local File Permission Warning Banner (Hidden by default) -->
+    <div id="file-access-banner" class="banner banner-warning hidden">
+      <div class="banner-icon">⚠️</div>
+      <div class="banner-body">
+        <strong>Local File Access Required</strong>
+        <p>To darken local files (<code class="code-pill">file:///</code>), enable "Allow access to file URLs".</p>
+        <button id="btn-open-file-access" class="btn-link">Enable in Extension Details →</button>
+      </div>
+    </div>
+
+    <!-- Theme Presets Grid -->
+    <section class="section">
+      <div class="section-header">
+        <label class="section-title">Reading Themes</label>
+        <span class="section-hint" id="active-theme-name">Charcoal Night</span>
+      </div>
+      <div class="presets-grid" id="presets-grid">
+        <button class="preset-btn active" data-theme="charcoal">
+          <span class="preset-swatch swatch-charcoal"></span>
+          <span class="preset-label">Charcoal</span>
+        </button>
+        <button class="preset-btn" data-theme="amoled">
+          <span class="preset-swatch swatch-amoled"></span>
+          <span class="preset-label">OLED Black</span>
+        </button>
+        <button class="preset-btn" data-theme="sepia">
+          <span class="preset-swatch swatch-sepia"></span>
+          <span class="preset-label">Sepia</span>
+        </button>
+        <button class="preset-btn" data-theme="midnight">
+          <span class="preset-swatch swatch-midnight"></span>
+          <span class="preset-label">Midnight</span>
+        </button>
+        <button class="preset-btn" data-theme="nordic">
+          <span class="preset-swatch swatch-nordic"></span>
+          <span class="preset-label">Nordic</span>
+        </button>
+        <button class="preset-btn" data-theme="matrix">
+          <span class="preset-swatch swatch-matrix"></span>
+          <span class="preset-label">Matrix</span>
+        </button>
+        <button class="preset-btn" data-theme="custom">
+          <span class="preset-swatch swatch-custom">⚙️</span>
+          <span class="preset-label">Custom</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Sliders / Fine Tuning Accordion -->
+    <section class="section">
+      <div class="section-header cursor-pointer" id="toggle-sliders-btn">
+        <label class="section-title">Fine-Tuning Controls</label>
+        <span class="accordion-arrow" id="accordion-arrow">▼</span>
+      </div>
+
+      <div class="sliders-container" id="sliders-panel">
+        <!-- Brightness -->
+        <div class="control-row">
+          <div class="control-label">
+            <span>Brightness</span>
+            <span class="control-value" id="val-brightness">95%</span>
+          </div>
+          <input type="range" id="range-brightness" min="60" max="140" value="95" class="slider-range">
+        </div>
+
+        <!-- Contrast -->
+        <div class="control-row">
+          <div class="control-label">
+            <span>Contrast</span>
+            <span class="control-value" id="val-contrast">95%</span>
+          </div>
+          <input type="range" id="range-contrast" min="60" max="140" value="95" class="slider-range">
+        </div>
+
+        <!-- Warmth / Blue Light -->
+        <div class="control-row">
+          <div class="control-label">
+            <span>Warmth (Blue Light Filter)</span>
+            <span class="control-value" id="val-warmth">0%</span>
+          </div>
+          <input type="range" id="range-warmth" min="0" max="100" value="0" class="slider-range warm-range">
+        </div>
+
+        <!-- Invert Intensity -->
+        <div class="control-row">
+          <div class="control-label">
+            <span>Invert Intensity</span>
+            <span class="control-value" id="val-invert">92%</span>
+          </div>
+          <input type="range" id="range-invert" min="70" max="100" value="92" class="slider-range">
+        </div>
+      </div>
+    </section>
+
+    <!-- General Options -->
+    <section class="section">
+      <div class="setting-row">
+        <div class="setting-text">
+          <span class="setting-name">Auto-enable on PDFs</span>
+          <span class="setting-sub">Always start documents in dark mode</span>
+        </div>
+        <label class="switch switch-sm">
+          <input type="checkbox" id="toggle-auto-enable">
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="setting-row">
+        <div class="setting-text">
+          <span class="setting-name">On-Screen Quick Button</span>
+          <span class="setting-sub">Floating toggle button on the page</span>
+        </div>
+        <label class="switch switch-sm">
+          <input type="checkbox" id="toggle-floating-btn">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </section>
+
+    <!-- Shortcut Hint -->
+    <div class="shortcut-box">
+      <span class="shortcut-label">Toggle Shortcut:</span>
+      <kbd class="kbd-key" id="kbd-shortcut">Alt + Shift + D</kbd>
+      <button id="btn-edit-shortcut" class="shortcut-edit-btn" title="Change keyboard shortcut">⚙️</button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <button id="btn-reset" class="btn-text-danger">Reset to Defaults</button>
+      <span class="version">v1.0.0</span>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

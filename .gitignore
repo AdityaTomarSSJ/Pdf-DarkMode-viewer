@@ -1,0 +1,10 @@
+# Node / System
+node_modules/
+.DS_Store
+Thumbs.db
+
+# Test profiles & debug files
+test_profile*
+test_ext_profile*
+test_scripting_profile*
+*.log

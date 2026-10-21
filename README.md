@@ -74,33 +74,3 @@ By default, Chrome prevents all extensions from accessing local files stored on 
 | **Toggle Dark Mode** | `Alt + Shift + D` | `Option + Shift + D` |
 
 > *To customize this shortcut, go to `chrome://extensions/shortcuts` in Chrome.*
-
----
-
-## 📁 Project Structure
-
-```
-d:/Projects/darkmode/
-├── manifest.json         # Manifest V3 configuration
-├── background.js         # Service worker handling commands and tab badge
-├── content.js            # Inversion engine, theme applicator, floating button
-├── content.css           # Overlay styling, animations, and print media rules
-├── popup.html            # Extension popup interface
-├── popup.css             # Dark modern popup stylesheet
-├── popup.js              # Controller for presets, sliders, and storage sync
-├── icons/                # High-res extension icons (16, 32, 48, 128 px)
-│   ├── icon16.png
-│   ├── icon32.png
-│   ├── icon48.png
-│   └── icon128.png
-├── test.pdf              # Sample PDF for testing
-└── README.md             # Documentation and usage guide
-```
-
----
-
-## 🛠️ How It Works Under the Hood
-
-1. **Non-destructive Inversion**: Chrome renders PDFs inside a native plugin container. Standard element filters often fail or distort text selection. PDF Dark Mode Pro injects a hardware-accelerated viewport overlay using CSS `mix-blend-mode: difference` combined with tone adjustment layers (`multiply`/`screen`) and `backdrop-filter`.
-2. **Text Selection & Scroll Preservation**: The overlay uses `pointer-events: none` and GPU containment, ensuring all scroll physics, mouse selection, copying, zooming, and links remain fully responsive.
-3. **Ink-Friendly Printing**: Utilizes `@media print` rules to automatically deactivate the overlay during print previews, guaranteeing clean white paper output.
